@@ -1,0 +1,8 @@
+plugin:
+    name: 'planetadeleste.locationshopaholic::lang.plugin.name'
+    description: 'planetadeleste.locationshopaholic::lang.plugin.description'
+    author: PlanetaDelEste
+    icon: icon-smile-o
+    homepage: ''
+navigation:
+permissions:
