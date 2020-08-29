@@ -5,6 +5,7 @@ use Cms\Classes\Page as CmsPage;
 use Lovata\Toolbox\Classes\Item\ElementItem;
 use Lovata\Toolbox\Classes\Helper\PageHelper;
 use PlanetaDelEste\LocationShopaholic\Classes\Collection\TownCollection;
+use RainLab\Location\Models\Setting;
 use RainLab\Location\Models\State;
 use VojtaSvoboda\LocationTown\Models\Town;
 
@@ -17,6 +18,7 @@ use VojtaSvoboda\LocationTown\Models\Town;
  * @property integer                                                                   $country_id
  * @property string                                                                    $name
  * @property string                                                                    $code
+ * @property boolean                                                                   $is_default
  * @property CountryItem                                                               $country
  * @property TownCollection|\PlanetaDelEste\LocationShopaholic\Classes\Item\TownItem[] $towns
  * @property \October\Rain\Argon\Argon                                                 $created_at
@@ -43,7 +45,8 @@ class StateItem extends ElementItem
     protected function getElementData()
     {
         return [
-            'town_id_list' => Town::where('state_id', $this->obElement->id)->lists('id')
+            'town_id_list' => Town::where('state_id', $this->obElement->id)->lists('id'),
+            'is_default'   => Setting::get('default_state') == $this->obElement->id
         ];
     }
 

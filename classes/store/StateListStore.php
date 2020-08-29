@@ -14,8 +14,8 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\State\SortingListStore;
  */
 class StateListStore extends AbstractListStore
 {
-    const SORT_CREATED_AT_ASC  = 'created_at|asc';
-    const SORT_CREATED_AT_DESC = 'created_at|desc';
+    const SORT_NAME_ASC  = 'name|asc';
+    const SORT_NAME_DESC = 'name|desc';
 
     protected static $instance;
 

@@ -5,6 +5,7 @@ use Lovata\Toolbox\Classes\Helper\PageHelper;
 use Lovata\Toolbox\Classes\Item\ElementItem;
 use PlanetaDelEste\LocationShopaholic\Classes\Collection\StateCollection;
 use RainLab\Location\Models\Country;
+use RainLab\Location\Models\Setting;
 
 
 /**
@@ -17,6 +18,7 @@ use RainLab\Location\Models\Country;
  * @property string                                                                      $code
  * @property bool                                                                        $is_pinned
  * @property bool                                                                        $is_enabled
+ * @property bool                                                                        $is_default
  * @property StateCollection|\PlanetaDelEste\LocationShopaholic\Classes\Item\StateItem[] $states
  * @property \October\Rain\Argon\Argon                                                   $created_at
  * @property \October\Rain\Argon\Argon                                                   $updated_at
@@ -38,7 +40,8 @@ class CountryItem extends ElementItem
     protected function getElementData()
     {
         return [
-            'state_id_list' => $this->obElement->states->lists('id')
+            'state_id_list' => $this->obElement->states->lists('id'),
+            'is_default'    => Setting::get('default_country') == $this->obElement->id
         ];
     }
 
