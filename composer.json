@@ -1,0 +1,23 @@
+{
+    "name": "planetadeleste/oc-locationshopaholic-plugin",
+    "description": "Api support for RainLab.Location and VojtaSvoboda.LocationTown plugins",
+    "type": "october-plugin",
+    "license": "MIT",
+    "keywords": ["october", "shopaholic", "api", "location", "town", "rainlab.location"],
+    "authors": [
+        {
+            "name": "Alvaro Canepa",
+            "email": "bfpdevel@gmail.com",
+            "role": "creator"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PlanetaDelEste\\LocationShopaholic\\": ""
+        }
+    },
+    "require": {
+        "php": ">=7.2",
+        "planetadeleste/oc-apitoolbox-plugin":"^1.0"
+    }
+}

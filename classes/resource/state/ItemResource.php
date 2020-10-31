@@ -1,0 +1,41 @@
+<?php namespace PlanetaDelEste\LocationShopaholic\Classes\Resource\State;
+
+use PlanetaDelEste\ApiToolbox\Classes\Resource\Base;
+use PlanetaDelEste\ApiToolbox\Plugin;
+use PlanetaDelEste\LocationShopaholic\Classes\Resource\Country\ItemResource as ItemResourceCountry;
+use PlanetaDelEste\LocationShopaholic\Classes\Resource\Town\IndexCollection as IndexCollectionTown;
+
+/**
+ * Class ItemResource
+ *
+ * @mixin \PlanetaDelEste\LocationShopaholic\Classes\Item\StateItem
+ * @package PlanetaDelEste\LocationShopaholic\Classes\Resource\State
+ */
+class ItemResource extends Base
+{
+    /**
+     * @return array|void
+     */
+    public function getData()
+    {
+        return [
+            'country' => ItemResourceCountry::make($this->country),
+            'towns'   => IndexCollectionTown::make($this->towns->collect())
+        ];
+    }
+
+    public function getDataKeys()
+    {
+        return [
+            'id',
+            'country_id',
+            'name',
+            'code'
+        ];
+    }
+
+    protected function getEvent()
+    {
+        return Plugin::EVENT_ITEMRESOURCE_DATA;
+    }
+}
