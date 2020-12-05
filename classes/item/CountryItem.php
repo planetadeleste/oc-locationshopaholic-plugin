@@ -37,9 +37,14 @@ class CountryItem extends ElementItem
         ]
     ];
 
-    protected function getElementData()
+    protected function getElementData(): array
     {
         return [
+            'id'            => $this->obElement->id,
+            'name'          => $this->obElement->name,
+            'code'          => $this->obElement->code,
+            'is_pinned'     => $this->obElement->is_pinned,
+            'is_enabled'    => $this->obElement->is_enabled,
             'state_id_list' => $this->obElement->states->lists('id'),
             'is_default'    => Setting::get('default_country') == $this->obElement->id
         ];

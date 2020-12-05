@@ -35,6 +35,18 @@ class TownItem extends ElementItem
         ]
     ];
 
+    protected function getElementData(): array
+    {
+        return [
+            'id'          => $this->obElement->id,
+            'state_id'    => $this->obElement->state_id,
+            'name'        => $this->obElement->name,
+            'slug'        => $this->obElement->slug,
+            'description' => $this->obElement->description,
+            'is_enabled'  => $this->obElement->is_enabled
+        ];
+    }
+
     /**
      * Returns URL of a brand page.
      *

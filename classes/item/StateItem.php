@@ -45,6 +45,10 @@ class StateItem extends ElementItem
     protected function getElementData()
     {
         return [
+            'id'           => $this->obElement->id,
+            'country_id'   => $this->obElement->country_id,
+            'name'         => $this->obElement->name,
+            'code'         => $this->obElement->code,
             'town_id_list' => Town::where('state_id', $this->obElement->id)->lists('id'),
             'is_default'   => Setting::get('default_state') == $this->obElement->id
         ];
