@@ -13,7 +13,7 @@ Route::prefix('api/v1')
                 ->name('countries.')
                 ->group(
                     function () {
-                        Route::get('{id}/states', 'States@index')->name('states');
+                        Route::get('{id}/states', 'States@list')->name('states');
                     }
                 );
 
@@ -25,7 +25,7 @@ Route::prefix('api/v1')
                 ->name('states.')
                 ->group(
                     function () {
-                        Route::get('{id}/towns', 'Towns@index')->name('towns');
+                        Route::get('{id}/towns', 'Towns@list')->name('towns');
                     }
                 );
 

@@ -8,10 +8,24 @@ use VojtaSvoboda\LocationTown\Models\Town;
  * Class Towns
  *
  * @package PlanetaDelEste\LocationShopaholic\Controllers\Api
+ *
+ * @property \PlanetaDelEste\LocationShopaholic\Classes\Collection\TownCollection $collection
  */
 class Towns extends Base
 {
     public $sortColumn = TownListStore::SORT_CREATED_AT_DESC;
+
+    public function list()
+    {
+        if (func_num_args()) {
+            $iStateID = func_get_arg(0);
+            if (is_numeric($iStateID)) {
+                $this->collection->state($iStateID);
+            }
+        }
+
+        return parent::list();
+    }
 
     public function getModelClass()
     {

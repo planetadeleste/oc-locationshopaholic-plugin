@@ -16,7 +16,7 @@ class TownCollection extends ElementCollection
      * Apply filter by active field
      * @return $this
      */
-    public function active()
+    public function active(): TownCollection
     {
         $arResultIDList = TownListStore::instance()->active->get();
 
@@ -28,10 +28,22 @@ class TownCollection extends ElementCollection
      * @param string $sSorting
      * @return $this
      */
-    public function sort(string $sSorting)
+    public function sort(string $sSorting): TownCollection
     {
         $arResultIDList = TownListStore::instance()->sorting->get($sSorting);
 
         return $this->applySorting($arResultIDList);
+    }
+
+    /**
+     * @param int $iStateID
+     *
+     * @return \PlanetaDelEste\LocationShopaholic\Classes\Collection\TownCollection
+     */
+    public function state(int $iStateID): TownCollection
+    {
+        $arResultIDList = TownListStore::instance()->state->get($iStateID);
+
+        return $this->intersect($arResultIDList);
     }
 }
