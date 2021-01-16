@@ -2,7 +2,7 @@
 
 Route::prefix('api/v1')
     ->namespace('PlanetaDelEste\LocationShopaholic\Controllers\Api')
-    ->middleware('api')
+    ->middleware(['throttle:120,1', 'bindings'])
     ->group(
         function () {
             //  Countries
