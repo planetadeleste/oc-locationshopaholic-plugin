@@ -5,40 +5,10 @@ Route::prefix('api/v1')
     ->middleware(['throttle:120,1', 'bindings'])
     ->group(
         function () {
-            //  Countries
-            Route::apiResource('countries', 'Countries', ['only' => ['index', 'show']]);
+            $arRoutes = ['countries', 'states', 'towns'];
 
-            // Country states
-            Route::prefix('countries')
-                ->name('countries.')
-                ->group(
-                    function () {
-                        Route::get('{id}/states', 'States@list')->name('states');
-                    }
-                );
-
-            //  States
-            Route::apiResource('states', 'States', ['only' => ['show']]);
-
-            // State towns
-            Route::prefix('states')
-                ->name('states.')
-                ->group(
-                    function () {
-                        Route::get('{id}/towns', 'Towns@list')->name('towns');
-                    }
-                );
-
-            //  Towns
-            Route::apiResource('towns', 'Towns', ['only' => ['show']]);
-
-            Route::middleware(['jwt.auth'])
-                ->group(
-                    function () {
-                        Route::apiResource('countries', 'Countries', ['only' => ['store', 'update', 'destroy']]);
-                        Route::apiResource('states', 'States', ['only' => ['store', 'update', 'destroy']]);
-                        Route::apiResource('towns', 'Towns', ['only' => ['store', 'update', 'destroy']]);
-                    }
-                );
+            foreach ($arRoutes as $sPublicRoute) {
+                Route::group([], plugins_path('/planetadeleste/locationshopaholic/routes/'.$sPublicRoute.'.php'));
+            }
         }
     );
