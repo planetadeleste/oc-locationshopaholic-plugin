@@ -1,7 +1,7 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Resource\Town;
 
 use PlanetaDelEste\ApiToolbox\Classes\Resource\Base;
-use PlanetaDelEste\ApiToolbox\Plugin;
+use PlanetaDelEste\LocationShopaholic\Plugin;
 use PlanetaDelEste\LocationShopaholic\Classes\Resource\State\ItemResource as ItemResourceState;
 
 /**
@@ -40,6 +40,6 @@ class ItemResource extends Base
 
     protected function getEvent()
     {
-        return Plugin::EVENT_ITEMRESOURCE_DATA;
+        return Plugin::EVENT_ITEMRESOURCE_DATA.'.town';
     }
 }

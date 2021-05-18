@@ -1,7 +1,5 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Resource\State;
 
-use PlanetaDelEste\ApiToolbox\Plugin;
-
 /**
  * Class ShowResource
  *
@@ -20,11 +18,6 @@ class ShowResource extends ItemResource
             'country',
             'towns'
         ];
-    }
-
-    protected function getEvent()
-    {
-        return Plugin::EVENT_SHOWRESOURCE_DATA;
     }
 }
 

@@ -13,6 +13,7 @@ use System\Classes\PluginBase;
  */
 class Plugin extends PluginBase
 {
+    const EVENT_ITEMRESOURCE_DATA = 'planetadeleste.locationShopaholic.itemResourceData';
     public $require = ['Lovata.Toolbox', 'RainLab.Location', 'VojtaSvoboda.LocationTown'];
 
     public function boot()

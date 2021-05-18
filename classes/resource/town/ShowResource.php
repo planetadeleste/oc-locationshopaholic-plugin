@@ -1,7 +1,5 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Resource\Town;
 
-use PlanetaDelEste\ApiToolbox\Plugin;
-
 /**
  * Class ShowResource
  *
@@ -25,11 +23,6 @@ class ShowResource extends ItemResource
             'deleted_at',
             'state'
         ];
-    }
-
-    protected function getEvent()
-    {
-        return Plugin::EVENT_SHOWRESOURCE_DATA;
     }
 }
 

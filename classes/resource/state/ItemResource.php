@@ -1,7 +1,7 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Resource\State;
 
 use PlanetaDelEste\ApiToolbox\Classes\Resource\Base;
-use PlanetaDelEste\ApiToolbox\Plugin;
+use PlanetaDelEste\LocationShopaholic\Plugin;
 use PlanetaDelEste\LocationShopaholic\Classes\Resource\Country\ItemResource as ItemResourceCountry;
 use PlanetaDelEste\LocationShopaholic\Classes\Resource\Town\IndexCollection as IndexCollectionTown;
 
@@ -36,6 +36,6 @@ class ItemResource extends Base
 
     protected function getEvent()
     {
-        return Plugin::EVENT_ITEMRESOURCE_DATA;
+        return Plugin::EVENT_ITEMRESOURCE_DATA.'.state';
     }
 }
