@@ -15,14 +15,14 @@ class ItemResource extends Base
     /**
      * @return array|void
      */
-    public function getData()
+    public function getData(): array
     {
         return [
             'state' => ItemResourceState::make($this->state)
         ];
     }
 
-    public function getDataKeys()
+    public function getDataKeys(): array
     {
         return [
             'id',
@@ -38,7 +38,7 @@ class ItemResource extends Base
         ];
     }
 
-    protected function getEvent()
+    protected function getEvent(): string
     {
         return Plugin::EVENT_ITEMRESOURCE_DATA.'.town';
     }
