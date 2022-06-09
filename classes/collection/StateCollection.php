@@ -6,6 +6,7 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\StateListStore;
 
 /**
  * Class StateCollection
+ *
  * @package PlanetaDelEste\LocationShopaholic\Classes\Collection
  */
 class StateCollection extends ElementCollection
@@ -14,10 +15,12 @@ class StateCollection extends ElementCollection
 
     /**
      * Sort list by
+     *
      * @param string $sSorting
+     *
      * @return $this
      */
-    public function sort(string $sSorting)
+    public function sort(string $sSorting): self
     {
         $arResultIDList = StateListStore::instance()->sorting->get($sSorting);
 
@@ -25,11 +28,23 @@ class StateCollection extends ElementCollection
     }
 
     /**
-     * @return \PlanetaDelEste\LocationShopaholic\Classes\Collection\StateCollection
+     * @return $this
      */
-    public function default()
+    public function default(): self
     {
         $arResultIDList = StateListStore::instance()->default->get();
+
+        return $this->intersect($arResultIDList);
+    }
+
+    /**
+     * @param int|string $iCountryId
+     *
+     * @return $this
+     */
+    public function country($iCountryId): self
+    {
+        $arResultIDList = StateListStore::instance()->country->get($iCountryId);
 
         return $this->intersect($arResultIDList);
     }

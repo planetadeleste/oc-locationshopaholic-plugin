@@ -15,6 +15,7 @@ class Towns extends Base
 {
     public $sortColumn = TownListStore::SORT_CREATED_AT_DESC;
 
+
     public function list()
     {
         if (func_num_args()) {
@@ -27,7 +28,7 @@ class Towns extends Base
         return parent::list();
     }
 
-    public function getModelClass()
+    public function getModelClass(): string
     {
         return Town::class;
     }

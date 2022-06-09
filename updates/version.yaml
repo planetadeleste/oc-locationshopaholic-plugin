@@ -1,2 +1,5 @@
-1.0.0:
+v1.0.0:
     - 'Init plugin'
+v1.0.1:
+    - 'New StateCollection::country method'
+    - 'Override States:list method'
