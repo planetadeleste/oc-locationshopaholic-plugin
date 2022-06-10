@@ -1,5 +1,16 @@
 v1.0.0:
     - 'Init plugin'
 v1.0.1:
+    - 'Load states/towns as list filtered by country/state'
+v1.0.2:
+    - 'Use custom throttle middleware'
+v1.0.3:
+    - 'Organize routes'
+v1.0.4:
+    - 'Rename resources event'
+v1.0.5:
+    - 'Add return declaration'
+v1.0.6:
     - 'New StateCollection::country method'
     - 'Override States:list method'
+
