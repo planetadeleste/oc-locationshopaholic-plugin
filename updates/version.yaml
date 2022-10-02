@@ -13,4 +13,6 @@ v1.0.5:
 v1.0.6:
     - 'New StateCollection::country method'
     - 'Override States:list method'
+v1.0.7:
+    - 'Fix Declaration of getModelClass() must be compatible with Base::getModelClass()'
 
