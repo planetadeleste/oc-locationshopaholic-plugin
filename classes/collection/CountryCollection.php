@@ -17,7 +17,7 @@ class CountryCollection extends ElementCollection
      * @param string $sSorting
      * @return $this
      */
-    public function sort(string $sSorting)
+    public function sort(string $sSorting): self
     {
         $arResultIDList = CountryListStore::instance()->sorting->get($sSorting);
 
@@ -25,9 +25,9 @@ class CountryCollection extends ElementCollection
     }
 
     /**
-     * @return \PlanetaDelEste\LocationShopaholic\Classes\Collection\CountryCollection
+     * @return CountryCollection
      */
-    public function active()
+    public function active(): self
     {
         $arResultIDList = CountryListStore::instance()->active->get();
 
@@ -35,9 +35,20 @@ class CountryCollection extends ElementCollection
     }
 
     /**
-     * @return \PlanetaDelEste\LocationShopaholic\Classes\Collection\CountryCollection
+     * @param mixed $sValue
+     * @return CountryCollection
      */
-    public function default()
+    public function filter($sValue): self
+    {
+        $arResultIDList = CountryListStore::instance()->search->get($sValue);
+
+        return $this->intersect($arResultIDList);
+    }
+
+    /**
+     * @return CountryCollection
+     */
+    public function default(): self
     {
         $arResultIDList = CountryListStore::instance()->default->get();
 

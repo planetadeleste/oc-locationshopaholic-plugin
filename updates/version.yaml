@@ -15,4 +15,6 @@ v1.0.6:
     - 'Override States:list method'
 v1.0.7:
     - 'Fix Declaration of getModelClass() must be compatible with Base::getModelClass()'
+v1.0.8:
+    - 'Add filter method to collections'
 

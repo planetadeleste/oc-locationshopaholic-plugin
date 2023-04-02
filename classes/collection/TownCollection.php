@@ -24,6 +24,18 @@ class TownCollection extends ElementCollection
     }
 
     /**
+     * @param mixed $sValue
+     *
+     * @return $this
+     */
+    public function filter($sValue): TownCollection
+    {
+        $arResultIDList = TownListStore::instance()->search->get($sValue);
+
+        return $this->intersect($arResultIDList);
+    }
+
+    /**
      * Sort list by
      * @param string $sSorting
      * @return $this
@@ -38,7 +50,7 @@ class TownCollection extends ElementCollection
     /**
      * @param int $iStateID
      *
-     * @return \PlanetaDelEste\LocationShopaholic\Classes\Collection\TownCollection
+     * @return TownCollection
      */
     public function state(int $iStateID): TownCollection
     {

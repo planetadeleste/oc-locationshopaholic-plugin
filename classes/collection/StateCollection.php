@@ -38,6 +38,18 @@ class StateCollection extends ElementCollection
     }
 
     /**
+     * @param mixed $sValue
+     *
+     * @return $this
+     */
+    public function filter($sValue): self
+    {
+        $arResultIDList = StateListStore::instance()->search->get($sValue);
+
+        return $this->intersect($arResultIDList);
+    }
+
+    /**
      * @param int|string $iCountryId
      *
      * @return $this

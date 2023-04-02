@@ -2,6 +2,7 @@
 
 use Lovata\Toolbox\Classes\Store\AbstractListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\Town\ActiveListStore;
+use PlanetaDelEste\LocationShopaholic\Classes\Store\Town\SearchListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\Town\SortingListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\Town\StateListStore as StateListStoreTown;
 
@@ -13,10 +14,11 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\Town\StateListStore as State
  * @property SortingListStore   $sorting
  * @property ActiveListStore    $active
  * @property StateListStoreTown $state
+ * @property SearchListStore    $search
  */
 class TownListStore extends AbstractListStore
 {
-    const SORT_CREATED_AT_ASC = 'created_at|asc';
+    const SORT_CREATED_AT_ASC  = 'created_at|asc';
     const SORT_CREATED_AT_DESC = 'created_at|desc';
 
     protected static $instance;
@@ -29,5 +31,6 @@ class TownListStore extends AbstractListStore
         $this->addToStoreList('sorting', SortingListStore::class);
         $this->addToStoreList('active', ActiveListStore::class);
         $this->addToStoreList('state', StateListStoreTown::class);
+        $this->addToStoreList('search', SearchListStore::class);
     }
 }

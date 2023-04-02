@@ -3,6 +3,7 @@
 use Lovata\Toolbox\Classes\Store\AbstractListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\Country\ActiveListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\Country\DefaultListStore;
+use PlanetaDelEste\LocationShopaholic\Classes\Store\Country\SearchListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\Country\SortingListStore;
 
 /**
@@ -13,10 +14,11 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\Country\SortingListStore;
  * @property SortingListStore $sorting
  * @property ActiveListStore  $active
  * @property DefaultListStore $default
+ * @property SearchListStore  $search
  */
 class CountryListStore extends AbstractListStore
 {
-    const SORT_NAME_ASC = 'name|asc';
+    const SORT_NAME_ASC  = 'name|asc';
     const SORT_NAME_DESC = 'name|desc';
 
     protected static $instance;
@@ -29,5 +31,6 @@ class CountryListStore extends AbstractListStore
         $this->addToStoreList('sorting', SortingListStore::class);
         $this->addToStoreList('active', ActiveListStore::class);
         $this->addToStoreList('default', DefaultListStore::class);
+        $this->addToStoreList('search', SearchListStore::class);
     }
 }
