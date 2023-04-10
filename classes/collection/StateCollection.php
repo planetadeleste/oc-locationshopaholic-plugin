@@ -44,7 +44,7 @@ class StateCollection extends ElementCollection
      */
     public function filter($sValue): self
     {
-        $arResultIDList = StateListStore::instance()->search->get($sValue);
+        $arResultIDList = StateListStore::instance()->search->getNoCache($sValue);
 
         return $this->intersect($arResultIDList);
     }

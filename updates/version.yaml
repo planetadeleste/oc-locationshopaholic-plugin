@@ -17,4 +17,6 @@ v1.0.7:
     - 'Fix Declaration of getModelClass() must be compatible with Base::getModelClass()'
 v1.0.8:
     - 'Add filter method to collections'
+v1.0.9:
+    - 'Fix getCacheKey() must be of the type string issue'
 

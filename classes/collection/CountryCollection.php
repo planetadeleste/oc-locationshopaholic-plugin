@@ -40,7 +40,7 @@ class CountryCollection extends ElementCollection
      */
     public function filter($sValue): self
     {
-        $arResultIDList = CountryListStore::instance()->search->get($sValue);
+        $arResultIDList = CountryListStore::instance()->search->getNoCache($sValue);
 
         return $this->intersect($arResultIDList);
     }

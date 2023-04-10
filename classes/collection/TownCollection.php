@@ -30,7 +30,7 @@ class TownCollection extends ElementCollection
      */
     public function filter($sValue): TownCollection
     {
-        $arResultIDList = TownListStore::instance()->search->get($sValue);
+        $arResultIDList = TownListStore::instance()->search->getNoCache($sValue);
 
         return $this->intersect($arResultIDList);
     }
