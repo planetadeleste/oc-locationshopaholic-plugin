@@ -20,6 +20,8 @@ class CountryListStore extends AbstractListStore
 {
     const SORT_NAME_ASC  = 'name|asc';
     const SORT_NAME_DESC = 'name|desc';
+    const SORT_PINNED_ASC  = 'is_pinned|asc';
+    const SORT_PINNED_DESC = 'is_pinned|desc';
 
     protected static $instance;
 

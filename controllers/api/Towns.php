@@ -13,8 +13,7 @@ use VojtaSvoboda\LocationTown\Models\Town;
  */
 class Towns extends Base
 {
-    public $sortColumn = TownListStore::SORT_CREATED_AT_DESC;
-
+    public $sortColumn = TownListStore::SORT_NAME_AT_ASC;
 
     public function list()
     {

@@ -1,6 +1,7 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Store\Country;
 
 use Lovata\Toolbox\Classes\Store\AbstractStoreWithParam;
+use PlanetaDelEste\ApiToolbox\Traits\Store\SortingListTrait;
 use RainLab\Location\Models\Country;
 
 /**
@@ -9,38 +10,17 @@ use RainLab\Location\Models\Country;
  */
 class SortingListStore extends AbstractStoreWithParam
 {
+    use SortingListTrait;
+
     protected static $instance;
 
-    /**
-     * Get ID list from database
-     * @return array
-     */
-    protected function getIDListFromDB() : array
-    {
-        $arElementIDList = [];
-
-        if (!$this->sValue) {
-            $arElementIDList = $this->getDefaultList();
-        } else {
-            [$sColumn, $sDirection] = explode("|", $this->sValue);
-            if ($sColumn) {
-                if (!$sDirection) {
-                    $sDirection = 'asc';
-                }
-                $arElementIDList = Country::orderBy($sColumn, $sDirection)->lists('id');
-            }
-        }
-
-        return $arElementIDList;
-    }
+    public $arListFromDB = ['is_pinned', 'name'];
 
     /**
-     * Get default list
-     * @return array
+     * @inheritDoc
      */
-    protected function getDefaultList() : array
+    protected function getModelClass(): string
     {
-        return Country::orderBy('is_pinned', 'desc')->lists('id');
+        return Country::class;
     }
-
 }

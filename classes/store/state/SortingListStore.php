@@ -1,6 +1,7 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Store\State;
 
 use Lovata\Toolbox\Classes\Store\AbstractStoreWithParam;
+use PlanetaDelEste\ApiToolbox\Traits\Store\SortingListTrait;
 use RainLab\Location\Models\State;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\StateListStore;
 
@@ -10,37 +11,17 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\StateListStore;
  */
 class SortingListStore extends AbstractStoreWithParam
 {
+    use SortingListTrait;
+
     protected static $instance;
 
-    /**
-     * Get ID list from database
-     * @return array
-     */
-    protected function getIDListFromDB() : array
-    {
-        $arElementIDList = [];
-
-        if (!$this->sValue) {
-            $arElementIDList = $this->getDefaultList();
-        } else {
-            list($sColumn, $sDirection) = explode("|", $this->sValue);
-            if ($sColumn) {
-                if (!$sDirection) {
-                    $sDirection = 'asc';
-                }
-                $arElementIDList = State::orderBy($sColumn, $sDirection)->lists('id');
-            }
-        }
-
-        return $arElementIDList;
-    }
+    public $arListFromDB = ['name'];
 
     /**
-     * Get default list
-     * @return array
+     * @inheritDoc
      */
-    protected function getDefaultList() : array
+    protected function getModelClass(): string
     {
-        return (array) State::lists('id');
+        return State::class;
     }
 }

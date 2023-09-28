@@ -38,6 +38,16 @@ class StateCollection extends ElementCollection
     }
 
     /**
+     * @return $this
+     */
+    public function active(): self
+    {
+        $arResultIDList = StateListStore::instance()->active->get();
+
+        return $this->intersect($arResultIDList);
+    }
+
+    /**
      * @param mixed $sValue
      *
      * @return $this

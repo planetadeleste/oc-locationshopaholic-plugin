@@ -18,7 +18,7 @@ class ItemResource extends Base
     public function getData(): array
     {
         return [
-            'states' => ListCollectionState::make($this->states->collect())
+            'states' => ListCollectionState::make($this->states->active()->collect())
         ];
     }
 

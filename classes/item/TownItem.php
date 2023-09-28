@@ -1,7 +1,5 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Item;
 
-use Cms\Classes\Page as CmsPage;
-use Lovata\Toolbox\Classes\Helper\PageHelper;
 use Lovata\Toolbox\Classes\Item\ElementItem;
 use VojtaSvoboda\LocationTown\Models\Town;
 
@@ -45,44 +43,5 @@ class TownItem extends ElementItem
             'description' => $this->obElement->description,
             'is_enabled'  => $this->obElement->is_enabled
         ];
-    }
-
-    /**
-     * Returns URL of a brand page.
-     *
-     * @param string $sPageCode
-     *
-     * @return string
-     */
-    public function getPageUrl($sPageCode = 'town')
-    {
-        //Get URL params
-        $arParamList = $this->getPageParamList($sPageCode);
-
-        //Generate page URL
-        $sURL = CmsPage::url($sPageCode, $arParamList);
-
-        return $sURL;
-    }
-
-    /**
-     * Get URL param list by page code
-     *
-     * @param string $sPageCode
-     *
-     * @return array
-     */
-    public function getPageParamList($sPageCode): array
-    {
-        $arPageParamList = [];
-
-        //Get URL params for page
-        $arParamList = PageHelper::instance()->getUrlParamList($sPageCode, 'TownPage');
-        if (!empty($arParamList)) {
-            $sPageParam = array_shift($arParamList);
-            $arPageParamList[$sPageParam] = $this->slug;
-        }
-
-        return $arPageParamList;
     }
 }

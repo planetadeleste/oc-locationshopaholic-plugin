@@ -1,6 +1,7 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Store\Town;
 
 use Lovata\Toolbox\Classes\Store\AbstractStoreWithParam;
+use PlanetaDelEste\ApiToolbox\Traits\Store\SortingListTrait;
 use VojtaSvoboda\LocationTown\Models\Town;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\TownListStore;
 
@@ -10,37 +11,15 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\TownListStore;
  */
 class SortingListStore extends AbstractStoreWithParam
 {
+    use SortingListTrait;
+
     protected static $instance;
 
     /**
-     * Get ID list from database
-     * @return array
+     * @inheritDoc
      */
-    protected function getIDListFromDB() : array
+    protected function getModelClass(): string
     {
-        $arElementIDList = [];
-
-        if (!$this->sValue) {
-            $arElementIDList = $this->getDefaultList();
-        } else {
-            list($sColumn, $sDirection) = explode("|", $this->sValue);
-            if ($sColumn) {
-                if (!$sDirection) {
-                    $sDirection = 'asc';
-                }
-                $arElementIDList = Town::orderBy($sColumn, $sDirection)->lists('id');
-            }
-        }
-
-        return $arElementIDList;
-    }
-
-    /**
-     * Get default list
-     * @return array
-     */
-    protected function getDefaultList() : array
-    {
-        return (array) Town::lists('id');
+        return Town::class;
     }
 }

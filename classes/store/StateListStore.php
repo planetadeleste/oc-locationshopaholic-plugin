@@ -1,6 +1,7 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Store;
 
 use Lovata\Toolbox\Classes\Store\AbstractListStore;
+use PlanetaDelEste\LocationShopaholic\Classes\Store\State\ActiveListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\State\CountryListStore as StateCountryListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\State\DefaultListStore;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\State\SearchListStore;
@@ -15,6 +16,7 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\State\SortingListStore;
  * @property DefaultListStore      $default
  * @property StateCountryListStore $country
  * @property SearchListStore       $search
+ * @property ActiveListStore       $active
  */
 class StateListStore extends AbstractListStore
 {
@@ -32,5 +34,6 @@ class StateListStore extends AbstractListStore
         $this->addToStoreList('default', DefaultListStore::class);
         $this->addToStoreList('country', StateCountryListStore::class);
         $this->addToStoreList('search', SearchListStore::class);
+        $this->addToStoreList('active', ActiveListStore::class);
     }
 }

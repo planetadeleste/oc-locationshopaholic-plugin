@@ -1,6 +1,7 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Event\Country;
 
 use Lovata\Toolbox\Classes\Event\ModelHandler;
+use PlanetaDelEste\ApiToolbox\Traits\Event\ModelHandlerTrait;
 use RainLab\Location\Models\Country;
 use PlanetaDelEste\LocationShopaholic\Classes\Item\CountryItem;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\CountryListStore;
@@ -12,6 +13,8 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\CountryListStore;
  */
 class CountryModelHandler extends ModelHandler
 {
+    use ModelHandlerTrait;
+
     /** @var Country */
     protected $obElement;
 
@@ -49,7 +52,7 @@ class CountryModelHandler extends ModelHandler
      *
      * @return string
      */
-    protected function getModelClass()
+    protected function getModelClass(): string
     {
         return Country::class;
     }
@@ -59,7 +62,7 @@ class CountryModelHandler extends ModelHandler
      *
      * @return string
      */
-    protected function getItemClass()
+    protected function getItemClass(): string
     {
         return CountryItem::class;
     }
@@ -70,6 +73,7 @@ class CountryModelHandler extends ModelHandler
     protected function afterCreate()
     {
         parent::afterCreate();
+        $this->clearCache();
     }
 
     /**
@@ -78,6 +82,7 @@ class CountryModelHandler extends ModelHandler
     protected function afterSave()
     {
         parent::afterSave();
+        $this->clearCache();
     }
 
     /**
@@ -86,5 +91,18 @@ class CountryModelHandler extends ModelHandler
     protected function afterDelete()
     {
         parent::afterDelete();
+        $this->clearCache();
+    }
+
+    protected function clearCache()
+    {
+        $this->clearSorting(['is_pinned', 'name']);
+        CountryListStore::instance()->active->clear();
+        CountryListStore::instance()->default->clear();
+    }
+
+    protected function getStoreClass(): string
+    {
+        return CountryListStore::class;
     }
 }

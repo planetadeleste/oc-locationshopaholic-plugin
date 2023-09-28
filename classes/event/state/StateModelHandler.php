@@ -1,9 +1,12 @@
-<?php namespace PlanetaDelEste\LocationShopaholic\Classes\Event\State;
+<?php
+
+namespace PlanetaDelEste\LocationShopaholic\Classes\Event\State;
 
 use Lovata\Toolbox\Classes\Event\ModelHandler;
-use RainLab\Location\Models\State;
+use PlanetaDelEste\ApiToolbox\Traits\Event\ModelHandlerTrait;
 use PlanetaDelEste\LocationShopaholic\Classes\Item\StateItem;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\StateListStore;
+use RainLab\Location\Models\State;
 
 /**
  * Class StateModelHandler
@@ -12,6 +15,8 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\StateListStore;
  */
 class StateModelHandler extends ModelHandler
 {
+    use ModelHandlerTrait;
+
     /** @var State */
     protected $obElement;
 
@@ -38,9 +43,28 @@ class StateModelHandler extends ModelHandler
                     'country_id',
                     'name',
                     'code',
+                    'is_enabled',
                 ];
             }
         );
+    }
+
+    protected function afterCreate()
+    {
+        parent::afterCreate();
+        $this->clearCache();
+    }
+
+    protected function afterSave()
+    {
+        parent::afterSave();
+        $this->clearCache();
+    }
+
+    protected function afterDelete()
+    {
+        parent::afterDelete();
+        $this->clearCache();
     }
 
     /**
@@ -48,7 +72,7 @@ class StateModelHandler extends ModelHandler
      *
      * @return string
      */
-    protected function getModelClass()
+    protected function getModelClass(): string
     {
         return State::class;
     }
@@ -58,8 +82,22 @@ class StateModelHandler extends ModelHandler
      *
      * @return string
      */
-    protected function getItemClass()
+    protected function getItemClass(): string
     {
         return StateItem::class;
+    }
+
+    protected function clearCache()
+    {
+        $this->clearSorting(['name']);
+        $this->clearCacheFields(['country']);
+
+        StateListStore::instance()->active->clear();
+        StateListStore::instance()->default->clear();
+    }
+
+    protected function getStoreClass(): string
+    {
+        return StateListStore::class;
     }
 }

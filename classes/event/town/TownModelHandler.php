@@ -1,6 +1,7 @@
 <?php namespace PlanetaDelEste\LocationShopaholic\Classes\Event\Town;
 
 use Lovata\Toolbox\Classes\Event\ModelHandler;
+use PlanetaDelEste\ApiToolbox\Traits\Event\ModelHandlerTrait;
 use VojtaSvoboda\LocationTown\Models\Town;
 use PlanetaDelEste\LocationShopaholic\Classes\Item\TownItem;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\TownListStore;
@@ -12,6 +13,8 @@ use PlanetaDelEste\LocationShopaholic\Classes\Store\TownListStore;
  */
 class TownModelHandler extends ModelHandler
 {
+    use ModelHandlerTrait;
+
     /** @var Town */
     protected $obElement;
 
@@ -45,12 +48,37 @@ class TownModelHandler extends ModelHandler
         );
     }
 
+    protected function afterCreate()
+    {
+        parent::afterCreate();
+        $this->clearCache();
+    }
+
+    protected function afterSave()
+    {
+        parent::afterSave();
+        $this->clearCache();
+    }
+
+    protected function afterDelete()
+    {
+        parent::afterDelete();
+        $this->clearCache();
+    }
+
+    protected function clearCache()
+    {
+        $this->clearSorting(['name', 'created_at']);
+        $this->clearCacheFields(['state']);
+        TownListStore::instance()->active->clear();
+    }
+
     /**
      * Get model class name
      *
      * @return string
      */
-    protected function getModelClass()
+    protected function getModelClass(): string
     {
         return Town::class;
     }
@@ -60,8 +88,13 @@ class TownModelHandler extends ModelHandler
      *
      * @return string
      */
-    protected function getItemClass()
+    protected function getItemClass(): string
     {
         return TownItem::class;
+    }
+
+    protected function getStoreClass(): string
+    {
+        return TownListStore::class;
     }
 }

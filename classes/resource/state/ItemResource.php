@@ -20,7 +20,7 @@ class ItemResource extends Base
     {
         return [
             'country' => ItemResourceCountry::make($this->country),
-            'towns'   => IndexCollectionTown::make($this->towns->collect())
+            'towns'   => IndexCollectionTown::make($this->towns->active()->collect())
         ];
     }
 
