@@ -23,4 +23,5 @@ v1.0.10:
     - 'Clear cache on country, state and town'
     - 'Add active states on country item resource'
     - 'Add active towns on state item resource'
-
+2.0.0:
+    - 'Update composer.json to toolbox 2.x'
