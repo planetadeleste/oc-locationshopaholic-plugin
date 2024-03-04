@@ -1,10 +1,12 @@
-<?php namespace PlanetaDelEste\LocationShopaholic\Classes\Event\Country;
+<?php
+
+namespace PlanetaDelEste\LocationShopaholic\Classes\Event\Country;
 
 use Lovata\Toolbox\Classes\Event\ModelHandler;
 use PlanetaDelEste\ApiToolbox\Traits\Event\ModelHandlerTrait;
-use RainLab\Location\Models\Country;
 use PlanetaDelEste\LocationShopaholic\Classes\Item\CountryItem;
 use PlanetaDelEste\LocationShopaholic\Classes\Store\CountryListStore;
+use RainLab\Location\Models\Country;
 
 /**
  * Class CountryModelHandler
@@ -45,6 +47,10 @@ class CountryModelHandler extends ModelHandler
                 ];
             }
         );
+        $obModel->addCasts([
+            'is_pinned'  => 'boolean',
+            'is_enabled' => 'boolean'
+        ]);
     }
 
     /**
